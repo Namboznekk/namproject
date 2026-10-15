@@ -12,6 +12,8 @@
 html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{margin:0;background:radial-gradient(ellipse at 50% -15%,#243b70 0,transparent 42%),var(--bg);color:var(--text);font:17px/1.75 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.005em}
 a{color:var(--blue)}a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.card{transition:transform .22s,border-color .22s,box-shadow .22s}
+.card:hover{transform:translateY(-3px);border-color:#536b9b;box-shadow:0 22px 58px #0005}
 nav{position:sticky;top:0;z-index:10;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:12px 18px;background:#080d1bf2;border-bottom:1px solid #ffffff18;backdrop-filter:blur(14px)}
 nav a{color:#e1e9ff;text-decoration:none;font-size:.95rem;font-weight:650;padding:7px 12px;border-radius:999px;transition:background .2s,color .2s}
 nav a:hover{background:#263758;color:white}
@@ -62,15 +64,21 @@ td:first-child{font-weight:750;color:#e8edff}
 .answer{font-weight:750;min-height:1.7em;margin-top:12px;color:var(--mint)}
 .conclusion{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:18px}
 .conclusion-icon{font-size:2.4rem}
+.source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.source-card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(145deg,#151f35,#10182a);border:1px solid var(--line);border-radius:18px;padding:22px;min-width:0}
+.source-card p{color:#d5deef;margin:0}
+.source-card a{align-self:flex-start;font-weight:750;text-decoration:none;border-bottom:1px solid #9bb7ff77;padding-bottom:2px}
+.source-card a:hover{color:#fff;border-color:var(--gold)}
+.safety-note{margin-top:18px;padding:16px 18px;border:1px solid #ffd47766;background:#ffd4770d;border-radius:14px;color:#f8e8bd}
 footer{border-top:1px solid #ffffff18;text-align:center;padding:32px 20px 42px;color:#aab7d1;background:#080d1b}
 footer p{margin:4px 0}
-@media(max-width:760px){body{font-size:16px}nav{gap:4px;padding:9px 8px}nav a{padding:7px 9px;font-size:.88rem}main{padding:10px 16px 42px}.grid,.quiz-grid{grid-template-columns:1fr}.section-heading{align-items:flex-start}.card{padding:21px}.diagram{gap:9px}section{margin:42px 0}}
+@media(max-width:760px){body{font-size:16px}nav{gap:4px;padding:9px 8px}nav a{padding:7px 9px;font-size:.88rem}main{padding:10px 16px 42px}.grid,.quiz-grid,.source-grid{grid-template-columns:1fr}.section-heading{align-items:flex-start}.card{padding:21px}.diagram{gap:9px}section{margin:42px 0}}
 @media(max-width:420px){nav a{font-size:.8rem;padding:6px 7px}header{padding-left:16px;padding-right:16px}.diagram{font-size:1.7rem;padding:22px 8px}button,.button-link{padding:11px 13px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-<nav aria-label="Điều hướng chính"><a href="#lythuyet">Lý thuyết</a><a href="#mophong">Mô phỏng</a><a href="#so-sanh">So sánh</a><a href="#quiz">Trắc nghiệm</a></nav>
+<nav aria-label="Điều hướng chính"><a href="#lythuyet">Lý thuyết</a><a href="#mophong">Mô phỏng</a><a href="#so-sanh">So sánh</a><a href="#quiz">Trắc nghiệm</a><a href="#nguon">Nguồn tham khảo</a></nav>
 <header><div class="eyebrow">🔭 DỰ ÁN VẬT LÝ</div><h1><span>☀️ Nhật thực</span><br>🌕 Nguyệt thực</h1><p class="hero-copy">Khám phá sự thẳng hàng của Mặt Trời – Trái Đất – Mặt Trăng bằng lý thuyết và mô phỏng tương tác.</p><div class="hero-actions"><a class="button-link" href="#lythuyet">Bắt đầu khám phá ↓</a><a class="button-link secondary" href="#mophong">Xem mô phỏng</a></div></header>
 <main>
 <section id="lythuyet"><div class="section-heading"><div class="section-number">01</div><div><h2>📚 Lý thuyết</h2><p class="section-subtitle">Hai hiện tượng, hai cách sắp xếp thiên thể.</p></div></div>
@@ -85,6 +93,7 @@ footer p{margin:4px 0}
 <div class="quiz-card"><h3>Câu 3</h3><p>Thứ tự đúng của nguyệt thực?</p><button class="option" onclick="ans(this,true)">☀️ → 🌍 → 🌕</button><button class="option" onclick="ans(this,false)">☀️ → 🌕 → 🌍</button><p class="answer" aria-live="polite"></p></div>
 </div></section>
 <section><div class="section-heading"><div class="section-number">05</div><div><h2>📝 Kết luận</h2><p class="section-subtitle">Một mẹo ghi nhớ trước khi kết thúc.</p></div></div><article class="card conclusion"><div class="conclusion-icon">🌌</div><div><p>Hai hiện tượng đều do ánh sáng Mặt Trời và sự sắp xếp đặc biệt của ba thiên thể.</p><p><strong>Nhật thực = Mặt Trăng che Mặt Trời.</strong><br><strong>Nguyệt thực = Mặt Trăng đi qua bóng Trái Đất.</strong></p></div></article></section>
+<section id="nguon"><div class="section-heading"><div class="section-number">06</div><div><h2>🔎 Nguồn tham khảo</h2><p class="section-subtitle">Tài liệu từ NASA để kiểm tra và tìm hiểu sâu hơn.</p></div></div><div class="source-grid"><article class="source-card"><h3>🌘 Tổng quan về nhật thực và nguyệt thực</h3><p>Giải thích cách Mặt Trời, Trái Đất và Mặt Trăng thẳng hàng để tạo ra hiện tượng thực.</p><a href="https://science.nasa.gov/eclipses/" target="_blank" rel="noopener noreferrer">Đọc tài liệu NASA ↗</a></article><article class="source-card"><h3>🌙 Quỹ đạo nghiêng của Mặt Trăng</h3><p>Vì sao nhật thực và nguyệt thực không xảy ra mỗi tháng; tìm hiểu các loại nguyệt thực.</p><a href="https://science.nasa.gov/moon/eclipses/" target="_blank" rel="noopener noreferrer">Đọc tài liệu NASA ↗</a></article></div><aside class="safety-note"><strong>☀️ Lưu ý an toàn:</strong> Không nhìn trực tiếp vào Mặt Trời khi quan sát nhật thực nếu không có kính quan sát nhật thực đạt chuẩn hoặc phương pháp quan sát gián tiếp an toàn.</aside></section>
 </main><footer><p>🌌 <strong>Dự án Vật lý · Nhật thực & Nguyệt thực</strong></p><p>Thực hiện bởi Namboznekk</p></footer>
 <script>
 let mode='solar',run=false,t=0,c=document.getElementById('c'),x=c.getContext('2d');
